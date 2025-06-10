@@ -19,8 +19,8 @@ public class TabuleiroXadrez {
         for (int i = 0; i < 8; i++) {
             String coluna = String.valueOf((char) ('a' + i));
             String posicao = coluna + "1";
-            PecaXadrez peca = FabricaPecas.getPeca(pecasBrancas[i], "Branco");
-            pecasTabuleiro.add(new PosicaoPeca(posicao, peca));
+            PecaXadrez peca = FabricaPecas.getPeca(pecasBrancas[i], "Branco"); // Aqui ele aciona a classe FabricaPecas, acessa o repositório de peças criando o objeto ou retornando a referência caso o objeto já exista
+            pecasTabuleiro.add(new PosicaoPeca(posicao, peca)); // Aqui ele atribui uma posição inicial para cada instância de PecaXadrez, aplicando o atributo extrínseco.
             colocarPeca(posicao, pecasBrancas[i], "Branco");
         }
     
@@ -53,21 +53,21 @@ public class TabuleiroXadrez {
     }
     
 
-    public void exibirTabuleiro() {
+    public void exibirTabuleiro() { // Exibe o todas as peças em suas respectivas posições
         for (PosicaoPeca posicao : pecasTabuleiro) {
             posicao.exibir();
         }
     }
 
-    private int[] converterPosicao(String posicao) {
+    private int[] converterPosicao(String posicao) { // Converte a posição (passada como string) de cada peça para a posição funcional de um tabuleiro de xadrez
         int coluna = posicao.charAt(0) - 'a'; 
         int linha = 8 - Character.getNumericValue(posicao.charAt(1)); 
         return new int[]{linha, coluna};
     }
 
-    private void colocarPeca(String posicao, String tipo, String cor) {
+    private void colocarPeca(String posicao, String tipo, String cor) { // Posiciona cada peça em sua respectiva posição no tabuleiro de xadrez
         int[] indices = converterPosicao(posicao);
-        tabuleiro[indices[0]][indices[1]] = FabricaPecas.getPeca(tipo, cor);
+        tabuleiro[indices[0]][indices[1]] = FabricaPecas.getPeca(tipo, cor); // Acessa o repositório de peças para retornar a peça desejada para montar o tabuleiro corretamente
     }
 
     public void exibirTabuleiroVisual() {
